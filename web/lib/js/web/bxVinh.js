@@ -249,6 +249,7 @@ var bxVinhFn = {
             bxVinhFn.normalFormFn.addThuNoFn();
             bxVinhFn.normalFormFn.addGheSoDoChoFn();
             bxVinhFn.normalFormFn.addXeDiemDungFn();
+            bxVinhFn.normalFormFn.quanLyBanVeFn();
         }
         , commonFn:function() {
             var logout = $('.logoutbtn');
@@ -2521,6 +2522,7 @@ var bxVinhFn = {
                    , success: function (rs) {
                        bxVinhFn.utils.loader('Lưu', false);
                        $(rs).insertAfter(pnl);
+                       pnl.find(':input').val('');
                    }
                 });
             });
@@ -2579,6 +2581,262 @@ var bxVinhFn = {
                     }
                 });
             });
+
+        }
+        , quanLyBanVeFn: function () {
+            var pnl = $('.QuanLyDatVePnl');
+            if ($(pnl).length > 0) {
+                var btn = pnl.find('.btnTimVe');
+                var diInput = pnl.find('.DI_Input');
+                var denInput = pnl.find('.DEN_Input');
+                var ngay = pnl.find('.Ngay');
+
+                var pnlRs = pnl.find('.QuanLyDatVePnl-Rs');
+
+                var url = '/lib/ajax/Ve/Default.aspx';
+                var tinhDataSrc = diInput.attr('data-src');
+
+
+                var chonBenDiModal = $('#chonBenDiModal');
+                var diTinh = chonBenDiModal.find('.DI_Tinh');
+                var diBen = chonBenDiModal.find('.DI_Ben');
+
+                var benSrc = diBen.attr('data-src');
+
+                bxVinhFn.utils.autoCompleteSearch(diInput, tinhDataSrc, 'DI_Tinh'
+                            , function (event, ui) {
+                                diInput.val(ui.item.hint);
+                                diTinh.autocomplete('close');
+                                diBen.val('');
+                                chonBenDiModal.modal('show');
+                                diBen.focus();
+
+
+                                diBen.attr('data-realSrc', benSrc + ui.item.id);
+                                var benRealSrc = diBen.attr('data-realSrc');
+                                bxVinhFn.utils.autoCompleteSearch(diBen, benRealSrc, 'DI_Ben'
+                                    , function (event1, ui1) {
+                                        diInput.attr('data-id', ui1.item.id);
+                                        diInput.val(ui1.item.label);
+                                        chonBenDiModal.modal('hide');
+                                    }
+                                    , function (matcher1, item1) {
+                                        if (matcher1.test(item1.Hint.toLowerCase()) || matcher1.test(bxVinhFn.utils.normalizeStr(item1.Hint.toLowerCase()))) {
+                                            return {
+                                                label: item1.Ten,
+                                                value: item1.Ten,
+                                                id: item1.ID,
+                                                hint: item1.Hint
+                                            };
+                                        }
+                                    }
+                                );
+                                diBen.unbind('click').click(function () {
+                                    diBen.autocomplete('search', '');
+                                });
+                            }
+                            , function (matcher, item) {
+                                if (matcher.test(item.Hint.toLowerCase()) || matcher.test(bxVinhFn.utils.normalizeStr(item.Hint.toLowerCase()))) {
+                                    return {
+                                        label: item.Ten,
+                                        value: item.Ten,
+                                        id: item.ID,
+                                        hint: item.Hint
+                                    };
+                                }
+                            }
+                        );
+
+
+                diInput.unbind('click').click(function () {
+                    diInput.autocomplete('search', '');
+                });
+
+
+                pnl.find('.Ngay').datepicker();
+
+                var chonBenDenModal = $('#chonBenDenModal');
+                var denTinh = chonBenDenModal.find('.DEN_Tinh');
+                var denBen = chonBenDenModal.find('.DEN_Ben');
+
+
+                bxVinhFn.utils.autoCompleteSearch(denInput, tinhDataSrc, 'DEN_Tinh'
+                            , function (event, ui) {
+                                denInput.val(ui.item.hint);
+                                denInput.autocomplete('close');
+                                denBen.val('');
+                                chonBenDenModal.modal('show');
+                                denBen.focus();
+
+                                denBen.attr('data-realSrc', benSrc + ui.item.id);
+                                var benRealSrc = denBen.attr('data-realSrc');
+                                bxVinhFn.utils.autoCompleteSearch(denBen, benRealSrc, 'DEN_Ben'
+                                    , function (event1, ui1) {
+                                        denInput.attr('data-id', ui1.item.id);
+                                        denInput.val(ui1.item.label);
+                                        chonBenDenModal.modal('hide');
+                                    }
+                                    , function (matcher1, item1) {
+                                        if (matcher1.test(item1.Hint.toLowerCase()) || matcher1.test(bxVinhFn.utils.normalizeStr(item1.Hint.toLowerCase()))) {
+                                            return {
+                                                label: item1.Ten,
+                                                value: item1.Ten,
+                                                id: item1.ID,
+                                                hint: item1.Hint
+                                            };
+                                        }
+                                    }
+                                );
+                                denBen.unbind('click').click(function () {
+                                    denBen.autocomplete('search', '');
+                                });
+                            }
+                            , function (matcher, item) {
+                                if (matcher.test(item.Hint.toLowerCase()) || matcher.test(bxVinhFn.utils.normalizeStr(item.Hint.toLowerCase()))) {
+                                    return {
+                                        label: item.Ten,
+                                        value: item.Ten,
+                                        id: item.ID,
+                                        hint: item.Hint
+                                    };
+                                }
+                            }
+                        );
+
+                denInput.unbind('click').click(function () {
+                    denInput.autocomplete('search', '');
+                });
+
+                btn.click(function () {
+                    var di = diInput.attr('data-id');
+                    var den = denInput.attr('data-id');
+                    if (di === '') {
+                        alert('Vui lòng chọn bến đi');
+                        return;
+                    }
+                    if (den === '') {
+                        alert('Vui lòng chọn bến đến');
+                        return;
+                    }
+                    var data = [];
+                    data.push({ name: 'subAct', value: 'quanLyGetListByDiem' });
+                    data.push({ name: 'DI_ID', value: di });
+                    data.push({ name: 'DEN_ID', value: den });
+                    data.push({ name: 'Ngay', value: ngay.val() });
+
+                    $.ajax({
+                        url: '/lib/ajax/datve/default.aspx'
+                        , data: data
+                        , success:function(rs) {
+                            pnlRs.html(rs);
+                        }
+                    });
+
+                });
+
+                var quanLyDatVeChonChoModal = $('#quanLyDatVeChonChoModal');
+
+                pnlRs.on('click', '.btnQuanLyDatVe', function() {
+                    var item = $(this);
+                    var xeId = item.attr('data-xeId');
+
+                    var diId = item.attr('data-diId');
+                    var denId = item.attr('data-denId');
+                    var chieuDi = item.attr('data-chieuDi');
+                    var ngay = item.attr('data-ngay');
+
+                    var data = [];
+                    data.push({ name: 'subAct', value: 'quanLyChonCho' });
+                    data.push({ name: 'DI_ID', value: diId });
+                    data.push({ name: 'DEN_ID', value: denId });
+                    data.push({ name: 'XE_ID', value: xeId });
+                    data.push({ name: 'CHIEUDI', value: chieuDi });
+                    data.push({ name: 'Ngay', value: ngay });
+                    $.ajax({
+                        url: '/lib/ajax/datve/default.aspx'
+                        , data: data
+                        , success: function (rs) {
+                            quanLyDatVeChonChoModal.modal('show');
+                            quanLyDatVeChonChoModal.find('.modal-body').html(rs);
+                        }
+                    });
+
+                });
+                quanLyDatVeChonChoModal.find('.modal-body').on('click', '.btnQuanLyChonGhe', function () {
+                    var item = $(this);
+                    var xeId = item.attr('data-xeId');
+                    var diId = item.attr('data-diId');
+                    var denId = item.attr('data-denId');
+                    var ngay = item.attr('data-ngay');
+                    var chieuDi = item.attr('data-chieuDi');
+                    var chonGhe = item.attr('data-chonGhe');
+
+                    var ten = quanLyDatVeChonChoModal.find('.Ten');
+                    var mobile = quanLyDatVeChonChoModal.find('.Mobile');
+                    var _ten = ten.val();
+                    var _mobile = mobile.val();
+
+                    if (_ten == '') {
+                        alert('Nhập tên');
+                        ten.focus();
+                        return;
+                    }
+                    if (_mobile == '') {
+                        alert('Nhập số điện thoại');
+                        ten.focus();
+                        return;
+                    }
+
+
+
+                    var veStr = '';
+
+                    if (chonGhe.toLowerCase() == 'true') {
+                        quanLyDatVeChonChoModal.find('.btn-success').each(function (i, j) {
+                            var choNgoi = $(j);
+                            veStr += choNgoi.attr('data-id') + ',';
+                        });
+                        if (veStr == '') {
+                            alert('Vui lòng chọn ghế ngồi');
+                            return;
+                        }
+                    }
+
+                    var data = [];
+                    data.push({ name: 'subAct', value: 'datVe-quanLy' });
+                    data.push({ name: 'XE_ID', value: xeId });
+                    data.push({ name: 'CHIEUDI', value: chieuDi });
+                    data.push({ name: 'DI_ID', value: diId });
+                    data.push({ name: 'DEN_ID', value: denId });
+                    data.push({ name: 'Ngay', value: ngay });
+
+                    data.push({ name: 'Ten', value: _ten });
+                    data.push({ name: 'Mobile', value: _mobile });
+                    data.push({ name: 'VeStr', value: veStr });
+                    data.push({ name: 'ChonGhe', value: chonGhe });
+
+                    btn.attr('disabled', 'disabled');
+
+                    $.ajax({
+                        url: '/lib/ajax/Booking/Default.aspx'
+                        , data: data
+                        , success: function (rs) {
+                            quanLyDatVeChonChoModal.modal('hide');
+
+                        }
+                    });
+                });
+
+
+                quanLyDatVeChonChoModal.find('.modal-body').on('click', '.SoDoChoNgoi-ChoNgoi', function () {
+                    var item = $(this);
+                    if (item.hasClass('btn-success')) {
+                        item.removeClass('btn-success');
+                    } else {
+                        item.addClass('btn-success');
+                    }
+                });
+            }
 
         }
     }

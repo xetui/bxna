@@ -5,6 +5,7 @@ using System.Net;
 using docsoft;
 using docsoft.entities;
 using linh.common;
+using linh.core.dal;
 using linh.json;
 
 public partial class lib_ajax_DatVe_Default : basePage
@@ -30,7 +31,6 @@ public partial class lib_ajax_DatVe_Default : basePage
         var Id = Request["ID"];
         var HT_ID = Request["HT_ID"];
         var XE_ID = Request["XE_ID"];
-        var Ngay = Request["Ngay"];
         var Ma = Request["Ma"];
         var MaVe = Request["MaVe"];
         var Ten = Request["Ten"];
@@ -39,13 +39,17 @@ public partial class lib_ajax_DatVe_Default : basePage
         var DEN_ID = Request["DEN_ID"];
         var Gia = Request["Gia"];
         var ChonGhe = Request["ChonGhe"];
+        var Ngay = Request["Ngay"];
         var TT_ID = Request["TT_ID"];
         var ThanhToan = Request["ThanhToan"];
         var NgayThanhToan = Request["NgayThanhToan"];
         var Huy = Request["Huy"];
         var NhanVien = Request["NhanVien"];
         var Readed = Request["Readed"];
+        var CHIEUDI = Request["CHIEUDI"];
         var q = Request["q"];
+
+
         var IdNull = string.IsNullOrEmpty(Id);
         var loggedIn = Security.IsAuthenticated();
 
@@ -127,11 +131,63 @@ public partial class lib_ajax_DatVe_Default : basePage
                     DatVeDal.DeleteById(Item.ID);
                     rendertext("0");
                 }
-                rendertext("-1");
                 break;
 
                 #endregion
+            case "quanLyGetListByDiem":
 
+                #region remove
+
+                if (loggedIn)
+                {
+                    var list = XeDal.SearchByDiemDung(DAL.con(), DI_ID, DEN_ID, 50, Ngay);
+                    var Di = DiemDungDal.SelectById(Convert.ToInt32(DI_ID));
+                    var Den = DiemDungDal.SelectById(Convert.ToInt32(DEN_ID));
+
+                    var newList = list.Select(x =>
+                    {
+                        x.DI_ID = Convert.ToInt32(DI_ID);
+                        x.DEN_ID = Convert.ToInt32(DEN_ID);
+                        x.NgayStr = Ngay;
+                        return x;
+                    }).ToList();
+                    ListByDiemQuanLy.List = newList;
+                    ListByDiemQuanLy.Di = Di;
+                    ListByDiemQuanLy.Den = Den;
+                    ListByDiemQuanLy.Visible = true;
+                }
+                break;
+
+                #endregion
+            case "quanLyChonCho":
+
+                #region remove
+
+                if (loggedIn)
+                {
+                   var ItemXe = XeDal.SelectById(Convert.ToInt64(XE_ID));
+                   var Di = DiemDungDal.SelectById(Convert.ToInt32(DI_ID));
+                   var Den = DiemDungDal.SelectById(Convert.ToInt32(DEN_ID));
+                   var ListGhe = GheDal.SelectBySoDo(ItemXe.SODO_ID.ToString());
+                   var ItemSoDo = SoDoDal.SelectById(ItemXe.SODO_ID);
+                    ItemXe.Di = Convert.ToBoolean(CHIEUDI);
+                    var ItemHanhTrinh = HanhTrinhDal.SelectCurrentHanhTrinh(ItemXe.ID, Convert.ToBoolean(CHIEUDI), Ngay);
+
+                    var datVeChiTiets = DatVeChiTietDal.SelectByHanhTrinhId(ItemHanhTrinh.ID);
+
+                    ChonChoQuanLy.NgayStr = Ngay;
+                    ChonChoQuanLy.ItemSoDo = ItemSoDo;
+                    ChonChoQuanLy.ItemXe = ItemXe;
+                    ChonChoQuanLy.Di = Di;
+                    ChonChoQuanLy.Den = Den;
+                    ChonChoQuanLy.ListGhe = ListGhe;
+                    ChonChoQuanLy.Visible = true;
+                    ChonChoQuanLy.ListDatVeChiTiet = datVeChiTiets;
+                    ChonChoQuanLy.Visible = true;
+                }
+                break;
+
+                #endregion
             case "thanhtoan":
 
                 #region remove
