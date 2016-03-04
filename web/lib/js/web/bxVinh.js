@@ -2575,7 +2575,8 @@ var bxVinhFn = {
                    , success: function (rs) {
                        bxVinhFn.utils.loader('Lưu', false);
                        $(rs).insertAfter(pnl);
-                   }
+                        pnl.find(':input').val('');
+                    }
                 });
             });
 
