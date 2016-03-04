@@ -1,0 +1,85 @@
+﻿body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 140%;
+}
+
+* {
+    font-size: 14px;
+}
+h1 {
+    font-size: 22px;
+}
+.print-frame {
+    padding: 10px 20px;
+    padding-bottom: 50px;
+    clear: both;
+    float: left;
+    width: 850px;
+    height: 350px;
+}
+table {
+    clear: both;
+    width: 100%;
+}
+hr {
+    border: solid 1px #999;
+    padding: 0px;
+    margin: 0px;
+}
+table
+{
+    border: none;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+.print-box {
+    padding: 20px;
+}
+table td, table th
+{
+    padding: 4px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+table th
+{
+    text-align: center;
+}
+table.border td, table.border th
+{
+    border: 1px solid #aaa;
+}
+.ChonAnh-PrintItem {
+    border: solid 1px #aaa;
+    display: inline-block;
+    margin-right: 2px;
+}
+.ChonAnh-PrintItem-Stt {
+    display: inline-block;
+    border-right: solid 1px #aaa;
+    padding: 2px 2px;
+    font-weight: bold;
+}
+.ChonAnh-PrintItem-Ten {
+    padding: 2px 2px;
+}
+.print-frame-a5 {
+    clear: both;
+    float: left;
+    width: 540px;
+    height: 650px;
+    top: -50px;
+    left: 60px;
+    position: absolute;
+    -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
+     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+h2 {
+    font-size: 24px;
+}
+.hr {
+    border-top: solid 1px #999;
+}

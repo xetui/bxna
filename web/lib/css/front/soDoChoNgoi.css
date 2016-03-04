@@ -1,0 +1,56 @@
+﻿.SoDoChoNgoi-ChoNgoi {
+    
+}
+
+.Sodo-GiuongNam {
+    float: left; 
+}
+.Sodo-GiuongNam .SoDoChoNgoi-ChoNgoi {
+    margin: 8px;
+    width: 50px;
+}
+.Sodo-GiuongNam .SoDoChoNgoi-ChoNgoi:nth-child(3n) {
+    margin-right: 0px;
+}
+.Sodo-GiuongNam .SoDoChoNgoi-Tang1 {
+    padding: 5px;
+    float: left;
+    width: 300px;
+    height: 597px;
+    background-image: url(i/SoDoChoNgoi-Tang1.png);
+    padding: 212px 50px 35px 50px;
+}
+.Sodo-GiuongNam .SoDoChoNgoi-Tang2 {
+    padding: 5px;
+    float: left;
+    width: 300px;
+    height: 597px;
+    background-image: url(i/SoDoChoNgoi-Tang2.png);
+    padding: 212px 50px 35px 50px;
+}
+
+.Sodo-GiuongNam .A1 {
+        
+}
+.Sodo-GiuongNam .A2 {
+    
+}
+
+.Sodo-Limou {
+    float: left;    
+}
+.Sodo-Limou .SoDoChoNgoi-ChoNgoi {
+    margin: 8px;
+    width: 50px;
+}
+.Sodo-Limou .SoDoChoNgoi-ChoNgoi:nth-child(3n) {
+    margin-right: 0px;
+}
+.Sodo-Limou .SoDoChoNgoi-Tang1 {
+    padding: 5px;
+    float: left;
+    width: 300px;
+    height: 597px;
+    background-image: url(i/SoDoChoNgoi-Limou-Tang1.png);
+    padding: 212px 50px 35px 50px;
+}

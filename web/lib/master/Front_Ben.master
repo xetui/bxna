@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/lib/master/Front_Content.master" AutoEventWireup="true" CodeFile="Front_Ben.master.cs" Inherits="lib_master_Front_Ben" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <asp:ContentPlaceHolder id="head2" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="LMnu">
+        <a href="/html/Ben/Add.aspx" class="LMnu-item">
+            Tạo vé mới
+        </a>
+        <a href="/html/Ben/?DaThanhToan=0&Huy=0" class="LMnu-item">
+            Vé đặt
+        </a>
+        <a href="/html/Ben/?DaThanhToan=1" class="LMnu-item">
+            Đã thanh toán
+        </a>
+        <a href="/html/ben/?Huy=1" class="LMnu-item">
+            Hủy
+        </a>
+        <a href="/html/Ben/" class="LMnu-item">
+            Vé
+        </a>
+    </div>
+    <asp:ContentPlaceHolder id="ContentPlaceHolder3" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+

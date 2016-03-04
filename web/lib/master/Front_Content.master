@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/lib/master/Front.master" AutoEventWireup="true" CodeFile="Front_Content.master.cs" Inherits="lib_master_Front_Content" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head4" Runat="Server">
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">
+    <div class="TopMnu">
+        <a href="javascript:;" class="toggleBtn">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </a>
+        <a href="/">
+            <img src="/lib/css/front/i/logo.png" class="vivizhou-logo" />
+        </a>
+        <div class="TopMnu-RightPnl hidden-xs">
+            <a href="call:0946709969" class="TopMnu-Help-Icon TopMnu-Help-Phone">04.66 820 605</a>
+            <a href="https://facebook.com/ViViZhou" class="TopMnu-Help-Icon TopMnu-Help-Facebook">/BenXeNgheAn</a>
+        </div>
+        <div class="TopMnu-Bg"></div>
+    </div>
+    
+    <div class="Main">
+        <div class="LMnu">
+            <a href="/" class="LMnu-item">
+                Giới thiệu
+            </a>
+            <a href="/" class="LMnu-item LMnu-subItem">
+                Hướng dẫn đặt vé
+            </a>
+            <a href="/" class="LMnu-item">
+                Liên hệ
+            </a>
+        </div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        <div class="MainBody MainBodyWhite">
+            ©<%=DateTime.Now.Year %> Bản quyền thuộc về Bến Xe Nghệ An
+        </div>
+    </div>
+</asp:Content>
+

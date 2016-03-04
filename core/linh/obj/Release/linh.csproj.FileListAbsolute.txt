@@ -1,0 +1,13 @@
+D:\PhanMem\Github\bxvinh\core\linh\bin\Release\linh.dll
+D:\PhanMem\Github\bxvinh\core\linh\bin\Release\linh.pdb
+D:\PhanMem\Github\bxvinh\core\linh\bin\Release\Giga.Common.Lib.dll
+D:\PhanMem\Github\bxvinh\core\linh\bin\Release\HtmlAgilityPack.dll
+D:\PhanMem\Github\bxvinh\core\linh\obj\Release\linh.dll
+D:\PhanMem\Github\bxvinh\core\linh\obj\Release\linh.pdb
+D:\PhanMem\Github\bxna\core\linh\bin\Release\linh.dll
+D:\PhanMem\Github\bxna\core\linh\bin\Release\linh.pdb
+D:\PhanMem\Github\bxna\core\linh\bin\Release\Giga.Common.Lib.dll
+D:\PhanMem\Github\bxna\core\linh\bin\Release\HtmlAgilityPack.dll
+D:\PhanMem\Github\bxna\core\linh\obj\Release\linh.dll
+D:\PhanMem\Github\bxna\core\linh\obj\Release\linh.pdb
+D:\PhanMem\Github\bxna\core\linh\obj\Release\linh.csprojResolveAssemblyReference.cache

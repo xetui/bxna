@@ -1,0 +1,66 @@
+﻿body {
+    padding: 5px;
+    margin: 5px;
+}
+
+* {
+    line-height: 100%;
+    font-size: 10px;
+}
+h1 {
+    font-size: 22px;
+}
+.print-frame {
+    padding: 10px 20px;
+    padding-bottom: 50px;
+    clear: both;
+}
+table {
+    clear: both;
+    width: 100%;
+}
+table.print-border {
+    border: solid #000 !important;
+    border-width: 1px !important;
+}
+table.print-border td, table.print-border th {
+    border: solid #000 !important;
+    border-width: 1px !important;
+}
+table
+{
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+table td, table th
+{
+    padding: 4px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+table th
+{
+    text-align: center;
+}
+.print-frame-a5 {
+    clear: both;
+    float: left;
+    width: 540px;
+    height: 650px;
+    top: -50px;
+    left: 60px;
+    position: absolute;
+    -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
+     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+@media print {
+    * {
+        font-size: 10px;
+    }   
+    table td, table th
+    {
+        padding: 4px 3px;
+        text-align: center;
+        vertical-align: top;
+    }
+}
